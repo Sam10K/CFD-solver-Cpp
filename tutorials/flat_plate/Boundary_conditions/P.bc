@@ -1,0 +1,33 @@
+// Boundary condition file %
+// Currently supports fixed value and zero gradient boundary conditions%
+// Requires type and value fields %
+
+internal field
+{
+list_type uniform;
+list_values 0;
+}
+
+ZONE-INLET
+{
+type 	zeroGradient;
+value 		0;
+}
+
+ZONE-OUTLET
+{
+type 	fixed;
+value		0;
+}
+
+ZONE-TOP
+{
+type 	zeroGradient;
+value		0;
+}
+
+ZONE-PLATE
+{
+type zeroGradient;
+value	0;
+}

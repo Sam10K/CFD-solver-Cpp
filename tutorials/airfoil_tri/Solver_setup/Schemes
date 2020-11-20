@@ -1,0 +1,39 @@
+// div_scheme : SOU 	- Second order Upwind 
+//	       CD  	- Central Difference
+//	       UD  	- Upwind Difference
+//              FROMM    - FROMM Scheme
+//	       QUICK    - QUICK scheme
+
+// Cell-center grad_scheme : GC	- Gauss cell centred (yet to be implemented)
+//			    GN	- Gauss nodal (yet to be implemented)
+//			    LSQ - Least Squares gradient scheme
+
+// Matrix_solver : GS	- Gauss Siedel
+//		   BICGSTAB   - BICGSTAB solver with Incomplete LU preconditioner
+
+div_scheme = SOU;
+
+grad_scheme = LSQ;
+
+u_matrix_solver = SOR
+{
+max_iter = 100;
+tol = 1e-6;
+nsweeps = 1;
+};
+
+v_matrix_solver = SOR
+{
+max_iter = 100;
+tol = 1e-6;
+nsweeps = 1;
+};
+
+p_matrix_solver = BICGSTAB
+{
+max_iter = 100;
+tol = 1e-6;
+nsweeps = 2;
+};
+
+

@@ -1,0 +1,12 @@
+// SIMPLE algorithm parameters
+
+alpha_p = 0.3; // Pressure under-relaxation factor
+alpha_u = 0.7; // Velocity under-relaxation factor
+u_tol = 1e-4; // U-velocity tolerance
+v_tol = 1e-4; // V-velocity tolerance
+p_tol = 1e-4; // P-velocity tolerance
+Max_iter = 5; // Number of simple iterations within a time step for unsteady flows. No effect on steady case
+
+
+//////////////////////
+

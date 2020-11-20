@@ -1,0 +1,15 @@
+// Solver setup parameters
+
+steady = T; // Flag to select steady or unsteady solver (unsteady not yet implemented)
+mu = 1e-4; // dynamic viscosity
+rho = 1; // Density 
+T = 800; // Number of iterations for steady case. Total time for unsteady flow in s.
+CFL = 1; // Maximum CFL number for unsteady flow. dt is calculated using this
+write_files = F;
+write_start = 10;
+write_end = 80;
+write_freq = 10;
+
+
+
+//////////////////////////////////////////////////
