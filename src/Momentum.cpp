@@ -271,11 +271,6 @@ Velocity Momentum_eq::matrix_solve()
     exit(0);
   }
 
-  vel<<Ux,vel.col(1);
-  MatrixXd Ap(mesh.n_cells,2);
-  Ap<<mat.U_mat.diagonal(),mat.V_mat.diagonal();
-  U.Ap = Ap;
-  U.set_c(vel);
 
   ///////////////////////////////// Y_momentum equation ///////////////////////////
   mat = matrix_assemble();
@@ -297,6 +292,7 @@ Velocity Momentum_eq::matrix_solve()
   }
 
   vel<<Ux,Uy;
+  MatrixXd Ap(mesh.n_cells,2);
   Ap<<mat.U_mat.diagonal(),mat.V_mat.diagonal();
 
   U.Ap = Ap;
