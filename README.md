@@ -1,4 +1,4 @@
-# CFD-solver-MATLAB
+# CFD-solver-C++
 * A 2D Navier-Stokes solver for solving steady, laminar, incompressible flows using finite-volume method and collocated grid arrangement coded in C++
 * Unsteady solver to be implemented soon
 * Pressure-velocity coupling implemented using SIMPLE algorithm
