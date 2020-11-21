@@ -333,7 +333,41 @@ void Mesh::Read_Mesh()
 
   }
 
+  ////////////////// Node_cell_id calculation ////////////////////////////
 
+  vector<vector<int>> node_cell_id(n_nodes);
+
+  for(int i=0;i<n_cells;i++)
+  {
+    RowVectorXi row_cell_node_id = cell_node_id.row(i);
+    for(int j=0;j<nd;j++)
+    {
+      int node = row_cell_node_id(j);
+      node_cell_id[node].push_back(i);
+
+    }
+  }
+
+  ////////////////////// Node_face_id calculation /////////////////////////
+
+  vector<vector<int>> node_face_id(n_nodes);
+
+  for(int i=0;i<n_faces;i++)
+  {
+    RowVectorXi row_face_node_id = face_node_id.row(i);
+    for(int j=0;j<2;j++)
+    {
+      int node = row_face_node_id(j);
+      node_face_id[node].push_back(i);
+
+    }
+  }
+
+
+  /////////////////// Writing to the class /////////////////////////////
+
+  Mesh::node_cell_id = node_cell_id;
+  Mesh::node_face_id = node_face_id;
   Mesh::n_nodes = n_nodes;
   Mesh::n_faces = n_faces;
   Mesh::n_cells = n_cells;

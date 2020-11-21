@@ -41,15 +41,35 @@ void Post_process::writeVTK(int folder)
   fout<<Cell_type<<endl;
 
   fout<<"CELL_DATA "<<mesh.n_cells<<endl;
-  fout<<"SCALARS P double"<<endl;
-  fout<<"LOOKUP_TABLE default"<<endl;
-  fout<<P.get_pressure()<<endl;
+  fout<<"FIELD attributes 2"<<endl;
+  fout<<"Pressure 1 "<<mesh.n_cells<<" double"<<endl;
+  fout<<P.get_pressure()<<endl<<endl;
 
   MatrixXd vel(mesh.n_cells,3);vel.setZero();
   vel.col(0) = U.get_vel().col(0);
   vel.col(1) = U.get_vel().col(1);
-  fout<<"VECTORS Velocity double"<<endl;
-  fout<<vel<<endl;
+  fout<<"Velocity 3 "<<mesh.n_cells<<" double"<<endl;
+  fout<<vel<<endl<<endl;
+
+  VectorXd nodal_pressure(mesh.n_nodes);nodal_pressure.setZero();
+  MatrixXd nodal_vel(mesh.n_nodes,3);nodal_vel.setZero();
+  for(int i=0;i<mesh.n_nodes;i++)
+  {
+    RowVectorXd row_nodal_vel = U.get_n(i);
+    double row_nodal_pressure = P.get_n(i);
+    nodal_vel(i,0) = row_nodal_vel(0);
+    nodal_vel(i,1) = row_nodal_vel(1);
+    nodal_pressure(i) = row_nodal_pressure;
+  }
+
+  fout<<"POINT_DATA "<<mesh.n_nodes<<endl;
+  fout<<"FIELD attributes 2"<<endl;
+  fout<<"Pressure 1 "<<mesh.n_nodes<<" double"<<endl;
+  fout<<nodal_pressure<<endl<<endl;
+
+  fout<<"Velocity 3 "<<mesh.n_nodes<<" double"<<endl;
+  fout<<nodal_vel<<endl<<endl;
+
 
   fout.close();
 }

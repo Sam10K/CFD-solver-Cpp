@@ -31,6 +31,7 @@ public:
   int n_faces,n_nodes,nd,n_cells;
   MatrixXi face_node_id,face_cell_id,ubound_type,pbound_type;//size is n_faces      //bound_type:
   MatrixXi cell_face_id,cell_node_id;//size is n_cells                              // fixed=1,zeroGradient=2,wall=3
+  vector<vector<int>> node_cell_id,node_face_id; //size is n_nodes
   MatrixXd Nodes,centroid,ubound_value;
   VectorXd volume,pbound_value;
   vector <Boundary> Boundaries;

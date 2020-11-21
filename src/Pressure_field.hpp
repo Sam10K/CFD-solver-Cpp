@@ -60,6 +60,11 @@ public:
     return p_c(cell_id);
   }
 
+  double get_n(int node_id)
+  {
+    return calc_nodal_pressure(node_id);
+  }
+
   double get_f(int face_id,int cell_id);
 
   RowVectorXd grad_c(int cell_id)
@@ -77,6 +82,9 @@ public:
 
 // Calculate facial pressure gradient values
   RowVectorXd calc_grad_p_f(int face_id,int cell_id);
+
+// Calculate nodal pressure values
+  double calc_nodal_pressure(int node_id);
 
 };
 

@@ -390,3 +390,29 @@ double Velocity::calc_cell_continuity(int cell_id)
   return abs(cell_cont);
 
 }
+
+
+RowVectorXd Velocity::calc_nodal_velocity(int node_id)
+{
+  vector<int> cell_ids = mesh.node_cell_id[node_id];
+
+  RowVectorXd numerator(2);numerator.setZero();
+  double denominator = 0.0;
+
+  for(int i=0;i<cell_ids.size();i++)
+  {
+    RowVectorXd centroid = mesh.centroid.row(cell_ids[i]);
+    RowVectorXd node = mesh.Nodes.row(node_id);
+    double inv_dist = 1/(centroid-node).norm();
+    RowVectorXd vel_c = get_c(cell_ids[i]);
+
+    numerator += vel_c*inv_dist;
+    denominator += inv_dist;
+
+  }
+
+  RowVectorXd nodal_vel = numerator/denominator;
+
+  return nodal_vel;
+
+}

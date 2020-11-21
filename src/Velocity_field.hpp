@@ -46,6 +46,11 @@ public:
     return velocity.row(cell_id);
   }
 
+  RowVectorXd get_n(int node_id)
+  {
+    return calc_nodal_velocity(node_id);
+  }
+
   RowVectorXd get_f(int face_id,int cell_id);
 
   MatrixXd grad_c(int cell_id);
@@ -66,6 +71,9 @@ public:
 
 // Calculate continuity for every cell
   double calc_cell_continuity(int cell_id);
+
+// Calculatre nodal velocity for every node
+  RowVectorXd calc_nodal_velocity(int node_id);
 
 };
 

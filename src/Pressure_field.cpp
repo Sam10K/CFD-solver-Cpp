@@ -259,3 +259,29 @@ RowVectorXd Pressure::calc_grad_p_f(int face_id,int cell_id)
   return grad_p_f_corr;
 
 }
+
+
+double Pressure::calc_nodal_pressure(int node_id)
+{
+  vector<int> cell_ids = mesh.node_cell_id[node_id];
+
+  double numerator=0.0;
+  double denominator = 0.0;
+
+  for(int i=0;i<cell_ids.size();i++)
+  {
+    RowVectorXd centroid = mesh.centroid.row(cell_ids[i]);
+    RowVectorXd node = mesh.Nodes.row(node_id);
+    double inv_dist = 1/(centroid-node).norm();
+    double pressure_c = get_c(cell_ids[i]);
+
+    numerator += pressure_c*inv_dist;
+    denominator += inv_dist;
+
+  }
+
+  double nodal_pressure = numerator/denominator;
+
+  return nodal_pressure;
+
+}
