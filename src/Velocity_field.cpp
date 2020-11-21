@@ -408,10 +408,28 @@ RowVectorXd Velocity::calc_nodal_velocity(int node_id)
 
     numerator += vel_c*inv_dist;
     denominator += inv_dist;
-    
+
   }
 
   RowVectorXd nodal_vel = numerator/denominator;
+
+  vector<int> face_ids = mesh.node_face_id[node_id];
+
+  for(int i=0;i<face_ids.size();i++)
+  {
+    if(mesh.ubound_type(face_ids[i])!=0)
+    {
+      if(mesh.ubound_type(face_ids[i])==1)
+      {nodal_vel = mesh.ubound_value.row(face_ids[i]);break;}
+
+      else if(mesh.ubound_type(face_ids[i])==2)
+      {nodal_vel = get_c(mesh.neighb(face_ids[i],-1));break;}
+
+      else if(mesh.ubound_type(face_ids[i])==3)
+      {nodal_vel = mesh.ubound_value.row(face_ids[i]);break;}
+
+    }
+  }
 
   return nodal_vel;
 

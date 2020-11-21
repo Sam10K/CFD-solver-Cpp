@@ -282,6 +282,24 @@ double Pressure::calc_nodal_pressure(int node_id)
 
   double nodal_pressure = numerator/denominator;
 
+  vector<int> face_ids = mesh.node_face_id[node_id];
+
+  for(int i=0;i<face_ids.size();i++)
+  {
+    if(mesh.pbound_type(face_ids[i])!=0)
+    {
+      if(mesh.pbound_type(face_ids[i])==1)
+      {nodal_pressure = mesh.pbound_value(face_ids[i]);break;}
+
+      else if(mesh.pbound_type(face_ids[i])==2)
+      {nodal_pressure = get_c(mesh.neighb(face_ids[i],-1));break;}
+
+      else if(mesh.pbound_type(face_ids[i])==3)
+      {nodal_pressure = get_c(mesh.neighb(face_ids[i],-1));break;} 
+
+    }
+  }
+
   return nodal_pressure;
 
 }
