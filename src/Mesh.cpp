@@ -348,6 +348,16 @@ void Mesh::Read_Mesh()
     }
   }
 
+  /*for(int i=0;i<n_nodes;i++)
+  {
+    vector<int> v = node_cell_id[i];
+    cout<<i<<"\t";
+    for(int j=0;j<v.size();j++)
+    cout<<v[j]<<",";
+
+    cout<<endl;
+  }
+  exit(0);*/
   ////////////////////// Node_face_id calculation /////////////////////////
 
   vector<vector<int>> node_face_id(n_nodes);

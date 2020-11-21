@@ -56,7 +56,13 @@ void Post_process::writeVTK(int folder)
   for(int i=0;i<mesh.n_nodes;i++)
   {
     RowVectorXd row_nodal_vel = U.get_n(i);
+    if(isnan(row_nodal_vel(0)))
+    row_nodal_vel.setZero();
+
     double row_nodal_pressure = P.get_n(i);
+    if(isnan(row_nodal_pressure))
+    row_nodal_pressure = 0.0;
+
     nodal_vel(i,0) = row_nodal_vel(0);
     nodal_vel(i,1) = row_nodal_vel(1);
     nodal_pressure(i) = row_nodal_pressure;

@@ -408,7 +408,7 @@ RowVectorXd Velocity::calc_nodal_velocity(int node_id)
 
     numerator += vel_c*inv_dist;
     denominator += inv_dist;
-
+    
   }
 
   RowVectorXd nodal_vel = numerator/denominator;
