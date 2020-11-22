@@ -273,9 +273,7 @@ Velocity Momentum_eq::matrix_solve()
 
 
   ///////////////////////////////// Y_momentum equation ///////////////////////////
-  mat = matrix_assemble();
-  vel = U.get_vel();
-
+  
   Matrix_solvers y_momentum(mat.V_mat,mat.Bc.col(1),vel.col(1),schemes.v_matrix_solver);
   solution_info y_momentum_results = y_momentum.solve();
 
