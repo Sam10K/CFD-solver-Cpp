@@ -20,9 +20,15 @@ public:
   MatrixXd grad_p_c,grad_p_f;
 
   Pressure()
-  {
+  { } //Dummy constructor
 
-  } //Dummy constructor
+  void set_zero() // To set everything to zero. Used for Pdash initialization
+  {
+    p_c.setZero();
+    p_f.setZero();
+    grad_p_c.setZero();
+    grad_p_f.setZero();
+  }
 
   Pressure(Solver_params,Schemes,SIMPLE_params,Mesh);
 

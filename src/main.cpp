@@ -55,7 +55,7 @@ int main()
 
     U = momentum.matrix_solve();
 
-    Pdash.set_c(zeros);
+    Pdash.set_zero();//Pdash.set_c(zeros);
     Pressure_poisson_eq pressure_poisson(Pdash,U);
     Pdash = pressure_poisson.matrix_solve();
 
