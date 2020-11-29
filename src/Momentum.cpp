@@ -26,7 +26,7 @@ eq_coeff Momentum_eq::diffusion_matrix(int face_id,int cell_id)
   Matrix<double,1,2> delta = S.squaredNorm()*d/S.dot(d);
   Matrix<double,1,2> k = S-delta;
   double mu = solver_setup.mu;
-  MatrixXd grad_vel_f = U.grad_f(face_id,cell_id);
+  Matrix<double,2,2> grad_vel_f = U.grad_f(face_id,cell_id);
   Matrix<double,1,2> vel_f = U.get_f(face_id,cell_id);
   Matrix<double,1,2> vel_c = U.get_c(cell_id);
 
@@ -38,7 +38,7 @@ eq_coeff Momentum_eq::diffusion_matrix(int face_id,int cell_id)
   if(neighb_id==-1)
   {
     int ubound_type = mesh.ubound_type(face_id);
-    RowVectorXd ubound = mesh.ubound_value.row(face_id);
+    Matrix<double,1,2> ubound = mesh.ubound_value.row(face_id);
 
     if(ubound_type==1)
     {
@@ -87,8 +87,8 @@ eq_coeff Momentum_eq::convection_matrix(int face_id,int cell_id)
   if(upwind==-1)
   upwind = cell_id;
 
-  MatrixXd grad_vel_up = U.grad_c(upwind);
-  MatrixXd grad_vel_f = U.grad_f(face_id,cell_id);
+  Matrix<double,2,2> grad_vel_up = U.grad_c(upwind);
+  Matrix<double,2,2> grad_vel_f = U.grad_f(face_id,cell_id);
 
   Matrix<double,1,2> mid = mesh.mid(face_id);
   Matrix<double,1,2> centroid = mesh.centroid.row(upwind);
@@ -134,7 +134,7 @@ eq_coeff Momentum_eq::convection_matrix(int face_id,int cell_id)
   if(neighb_id==-1)
   {
     int ubound_type = mesh.ubound_type(face_id);
-    RowVectorXd ubound = mesh.ubound_value.row(face_id);
+    Matrix<double,1,2> ubound = mesh.ubound_value.row(face_id);
 
     if(ubound_type==1)
     {
@@ -273,7 +273,7 @@ Velocity Momentum_eq::matrix_solve()
 
 
   ///////////////////////////////// Y_momentum equation ///////////////////////////
-  
+
   Matrix_solvers y_momentum(mat.V_mat,mat.Bc.col(1),vel.col(1),schemes.v_matrix_solver);
   solution_info y_momentum_results = y_momentum.solve();
 

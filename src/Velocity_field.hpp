@@ -32,7 +32,7 @@ public:
 
   void initialize();
 
-  RowVectorXd face_interp_vel(int face_id,int cell_id); //To calculate the facail values without Rhie-Chow interpolation
+  Matrix<double,1,2> face_interp_vel(int face_id,int cell_id); //To calculate the facail values without Rhie-Chow interpolation
 
   void set_c(MatrixXd vel);
 
@@ -41,39 +41,39 @@ public:
     return velocity;
   }
 
-  RowVectorXd get_c(int cell_id)
+  Matrix<double,1,2> get_c(int cell_id)
   {
     return velocity.row(cell_id);
   }
 
-  RowVectorXd get_n(int node_id)
+  Matrix<double,1,2> get_n(int node_id)
   {
     return calc_nodal_velocity(node_id);
   }
 
-  RowVectorXd get_f(int face_id,int cell_id);
+  Matrix<double,1,2> get_f(int face_id,int cell_id);
 
-  MatrixXd grad_c(int cell_id);
+  Matrix<double,2,2> grad_c(int cell_id);
 
-  MatrixXd grad_f(int face_id,int cell_id);
+  Matrix<double,2,2> grad_f(int face_id,int cell_id);
 
   double get_continuity();
 
 
 // Calculate facial velocity values
-  RowVectorXd calc_vel_f(int face_id,int cell_id);
+  Matrix<double,1,2> calc_vel_f(int face_id,int cell_id);
 
 // Calculate centroid pressure gradient values
-  MatrixXd calc_grad_vel_c(int cell_id);
+  Matrix<double,2,2> calc_grad_vel_c(int cell_id);
 
 // Calculate facial velocity gradient values
-  MatrixXd calc_grad_vel_f(int face_id,int cell_id);
+  Matrix<double,2,2> calc_grad_vel_f(int face_id,int cell_id);
 
 // Calculate continuity for every cell
   double calc_cell_continuity(int cell_id);
 
 // Calculatre nodal velocity for every node
-  RowVectorXd calc_nodal_velocity(int node_id);
+  Matrix<double,1,2> calc_nodal_velocity(int node_id);
 
 };
 

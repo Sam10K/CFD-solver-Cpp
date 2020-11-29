@@ -73,21 +73,21 @@ public:
 
   double get_f(int face_id,int cell_id);
 
-  RowVectorXd grad_c(int cell_id)
+  Matrix<double,1,2> grad_c(int cell_id)
   {
     return grad_p_c.row(cell_id);
   }
 
-  RowVectorXd grad_f(int face_id,int cell_id);
+  Matrix<double,1,2> grad_f(int face_id,int cell_id);
 
 // Calculate facial pressure values
   double calc_p_f(int face_id,int cell_id);
 
 // Calculate centroid pressure gradient values
-  RowVectorXd calc_grad_p_c(int cell_id);
+  Matrix<double,1,2> calc_grad_p_c(int cell_id);
 
 // Calculate facial pressure gradient values
-  RowVectorXd calc_grad_p_f(int face_id,int cell_id);
+  Matrix<double,1,2> calc_grad_p_f(int face_id,int cell_id);
 
 // Calculate nodal pressure values
   double calc_nodal_pressure(int node_id);

@@ -43,11 +43,11 @@ public:
 
   void Read_U_BC();
 
-  RowVectorXd mid(int face_id);
+  Matrix<double,1,2> mid(int face_id);
 
   double area(int face_id);
 
-  RowVectorXd normal(int face_id,int owner);
+  Matrix<double,1,2> normal(int face_id,int owner);
 
   int neighb(int face_id,int owner);
 

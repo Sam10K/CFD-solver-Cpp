@@ -1,12 +1,12 @@
 #include "Mesh.hpp"
 
 
-RowVectorXd Mesh::mid(int face_id)
+Matrix<double,1,2> Mesh::mid(int face_id)
 {
-  VectorXi node_id = face_node_id.row(face_id);
-  RowVectorXd nodes1 = Nodes.row(node_id(0));
-  RowVectorXd nodes2 = Nodes.row(node_id(1));
-  RowVectorXd mid = 0.5*(nodes1+nodes2);
+  Matrix<int,1,2> node_id = face_node_id.row(face_id);
+  Matrix<double,1,2> nodes1 = Nodes.row(node_id(0));
+  Matrix<double,1,2> nodes2 = Nodes.row(node_id(1));
+  Matrix<double,1,2> mid = 0.5*(nodes1+nodes2);
 
   return mid;
 
@@ -14,20 +14,20 @@ RowVectorXd Mesh::mid(int face_id)
 
 double Mesh::area(int face_id)
 {
-  VectorXi node_id = face_node_id.row(face_id);
-  RowVectorXd nodes1 = Nodes.row(node_id(0));
-  RowVectorXd nodes2 = Nodes.row(node_id(1));
+  Matrix<int,1,2> node_id = face_node_id.row(face_id);
+  Matrix<double,1,2> nodes1 = Nodes.row(node_id(0));
+  Matrix<double,1,2> nodes2 = Nodes.row(node_id(1));
   double area = (nodes1-nodes2).norm();
 
   return area;
 
 }
 
-RowVectorXd Mesh::normal(int face_id,int owner)
+Matrix<double,1,2> Mesh::normal(int face_id,int owner)
 {
-  VectorXi node_id = face_node_id.row(face_id);
-  RowVectorXd nodes1 = Nodes.row(node_id(0));
-  RowVectorXd nodes2 = Nodes.row(node_id(1));
+  Matrix<int,1,2> node_id = face_node_id.row(face_id);
+  Matrix<double,1,2> nodes1 = Nodes.row(node_id(0));
+  Matrix<double,1,2> nodes2 = Nodes.row(node_id(1));
 
   double dx = nodes1(0)-nodes2(0);
   double dy = nodes1(1)-nodes2(1);
@@ -35,8 +35,8 @@ RowVectorXd Mesh::normal(int face_id,int owner)
   double nx = -dy/sqrt(pow(dx,2)+pow(dy,2));
   double ny = dx/sqrt(pow(dx,2)+pow(dy,2));
 
-  RowVectorXd cent_nodes = centroid.row(owner);
-  RowVectorXd mid_nodes = mid(face_id);
+  Matrix<double,1,2> cent_nodes = centroid.row(owner);
+  Matrix<double,1,2> mid_nodes = mid(face_id);
 
   double d1 = mid_nodes(0)-cent_nodes(0);
   double d2 = mid_nodes(1)-cent_nodes(1);
@@ -49,7 +49,7 @@ RowVectorXd Mesh::normal(int face_id,int owner)
   }
 
 
-  RowVectorXd normals(1,2);
+  Matrix<double,1,2> normals;
   normals<<nx,ny;
 
   return normals;

@@ -20,14 +20,14 @@ poisson_eq_coeff Pressure_poisson_eq::poisson_matrix(int face_id,int cell_id)
   Matrix<double,1,2> centroid = mesh.centroid.row(cell_id);
   Matrix<double,1,2> neighb = (neighb_id!=-1)?mesh.centroid.row(neighb_id):mid;
 
-  RowVectorXd d_f_n = mid-neighb;
-  RowVectorXd d_c_n = centroid-neighb;
+  Matrix<double,1,2> d_f_n = mid-neighb;
+  Matrix<double,1,2> d_c_n = centroid-neighb;
   double gc = d_f_n.norm()/d_c_n.norm();
   double gn = 1.0-gc;
 
-  RowVectorXd Ap_c = U.Ap.row(cell_id)/mesh.volume(cell_id);
-  RowVectorXd Ap_n = (neighb_id!=-1)?U.Ap.row(neighb_id)/mesh.volume(neighb_id):Ap_c;
-  RowVectorXd Ap_f = gc*Ap_c + gn*Ap_n;
+  Matrix<double,1,2> Ap_c = U.Ap.row(cell_id)/mesh.volume(cell_id);
+  Matrix<double,1,2> Ap_n = (neighb_id!=-1)?U.Ap.row(neighb_id)/mesh.volume(neighb_id):Ap_c;
+  Matrix<double,1,2> Ap_f = gc*Ap_c + gn*Ap_n;
   S = S.cwiseQuotient(Ap_f); // D = S.*vol/Ap_f
   Matrix<double,1,2> d = neighb-centroid;
   if(neighb_id==-1)
@@ -36,7 +36,7 @@ poisson_eq_coeff Pressure_poisson_eq::poisson_matrix(int face_id,int cell_id)
   Matrix<double,1,2> delta = S.squaredNorm()*d/S.dot(d);
   Matrix<double,1,2> k = S-delta;
 
-  RowVectorXd grad_p_f = Pdash.grad_f(face_id,cell_id);
+  Matrix<double,1,2> grad_p_f = Pdash.grad_f(face_id,cell_id);
 
   double ac,af,bc;
   ac = -delta.norm()/d.norm();
@@ -96,7 +96,7 @@ poisson_eq_coeff Pressure_poisson_eq::rhs_matrix(int face_id,int cell_id)
   if(neighb_id==-1)
   {
     int ubound_type = mesh.ubound_type(face_id);
-    RowVectorXd ubound = mesh.ubound_value.row(face_id);
+    Matrix<double,1,2> ubound = mesh.ubound_value.row(face_id);
 
     if(ubound_type==1)
     {
