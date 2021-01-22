@@ -22,7 +22,8 @@
 
 ## Some example test cases :
 1. NACA 0012 airfoil at 5 degrees Angle of Attack:
-![alt Airfoil_AOA](https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/airfoil_aoa.png?raw=true)
+<img src="https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/airfoil_aoa.png?raw=true" alt="Airfoil_AOA" width="100px" height=auto>
+
 2. Lid driven Cavity at Reynolds number = 1000:
 ![alt Lid driven Cavity](https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/lid_driven_cavity.png?raw=true)
 
