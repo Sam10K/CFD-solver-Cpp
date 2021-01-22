@@ -21,7 +21,7 @@
 * The simulation results are output within a folder called Data in .vtk ASCII format. You can use Paraview to visualize them
 
 ## Some example test cases :
-https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/airfoil_aoa.png
+https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/airfoil_aoa.png?raw=true
 
 
 ## References:
