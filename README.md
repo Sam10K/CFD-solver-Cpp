@@ -21,7 +21,7 @@
 * The simulation results are output within a folder called Data in .vtk ASCII format. You can use Paraview to visualize them
 
 ## Some example test cases :
-### NACA 0012 airfoil at 5 degrees Angle of Attack:
+### NACA 0012 airfoil at 5 degrees Angle of Attack, Reynolds number = 1000:
 <img src="https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/airfoil_aoa.png?raw=true" alt="Airfoil_AOA" width="600px" height=auto>
 
 ### Lid driven Cavity at Reynolds number = 1000:
