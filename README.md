@@ -20,6 +20,14 @@
 * Schemes and SIMPLE algorithm parameters can alo be edited using the files inside the solver_setup folder  
 * The simulation results are output within a folder called Data in .vtk ASCII format. You can use Paraview to visualize them
 
+## Some example test cases :
+### NACA 0012 airfoil at 5 degrees Angle of Attack:
+<img src="https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/airfoil_aoa.png?raw=true" alt="Airfoil_AOA" width="600px" height=auto>
+
+### Lid driven Cavity at Reynolds number = 1000:
+<img src="https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/lid_driven_cavity.png?raw=true" alt="Lid driven cavity" width="600px" height=auto>
+
+
 ## References:
 * Error Analysis and Estimation for the Finite Volume Method with Applications to Fluid Flows - PhD thesis by Dr. Hrvoje Jasak (https://foam-extend.fsb.hr/wp-content/uploads/2016/12/Jasak_PhD_1996.pdf)
 
