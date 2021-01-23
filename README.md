@@ -27,6 +27,8 @@
 ### Lid driven Cavity at Reynolds number = 1000:
 <img src="https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/lid_driven_cavity.png?raw=true" alt="Lid driven cavity" width="600px" height=auto>
 
+### Cylinder at Reynolds number = 40:
+<img src="https://github.com/Sam10K/CFD-solver-Cpp/blob/master/Example_images/cylinder.png?raw=true" alt="Lid driven cavity" width="600px" height=auto>
 
 ## References:
 * Error Analysis and Estimation for the Finite Volume Method with Applications to Fluid Flows - PhD thesis by Dr. Hrvoje Jasak (https://foam-extend.fsb.hr/wp-content/uploads/2016/12/Jasak_PhD_1996.pdf)
